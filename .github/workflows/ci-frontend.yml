@@ -1,0 +1,37 @@
+name: ci-frontend
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  ci:
+    name: Lint and test frontend
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node-version: [12]
+        working-directory: [./frontend]
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2.3.3
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1.4.3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install npm dependencies
+        working-directory: ${{ matrix.working-directory }}
+        run: yarn install
+
+      - name: Lint frontend
+        working-directory: ${{ matrix.working-directory }}
+        run: yarn lint
+
+      - name: Test frontend
+        working-directory: ${{ matrix.working-directory }}
+        run: yarn test
