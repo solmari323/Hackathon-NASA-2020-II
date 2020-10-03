@@ -19,10 +19,12 @@ from django.urls import path, include
 from rest_framework import routers
 
 from accounts.urls import router as accounts_router
+from program.urls import router as program_router
 
 
 router = routers.DefaultRouter()
 router.registry.extend(accounts_router.registry)
+router.registry.extend(program_router.registry)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
