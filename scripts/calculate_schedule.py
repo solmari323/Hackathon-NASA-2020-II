@@ -44,43 +44,35 @@ def calculate_schedule(work_tasks):
         work_task_start = day[0]
         work_task_end = day[1]
 
-        # Calculate ideal sleep
-        sleep_start = work_task_end + timedelta(hours=2)
-        sleep_end = sleep_start + timedelta(hours=8)
-
-        # If there is sleep debt from previous day
-        if i > 0:
-            if sleep_debt.total_seconds() / 3600 > 0:
-                # Find the gap between waking up and work
-                prev_sleep_end = work_tasks[i - 1][1]
-                pre_work_gap = work_task_start - prev_sleep_end
-                # If there is room for a nap, and time to wake up, fit in the morning
-                if pre_work_gap < sleep_debt + timedelta(hours=1):
-                    nap = (
-                        prev_sleep_end,
-                        prev_sleep_end
-                        + timedelta(hours=sleep_debt + timedelta(hours=1)),
-                    )
-                    # Set sleep debt back to null
-                    sleep_debt = timedelta()
-                else:
-                    # Otherwise add it to the end of sleep.
-                    # If this is not possible, it will be caught in the next block.
-                    sleep_end = sleep_end + timedelta(
-                        hours=sleep_debt.total_seconds() / 3600
-                    )
-                    sleep_debt = timedelta()
-
-        # If not the last day, look for conflicts with tomorrow's work task
+        # If not the final day
         if i < len(work_tasks) - 1:
+            # Find next day's start of work
             next_work_task_start = work_tasks[i + 1][0]
-            # Do they clash?
+            # Wake up 2hrs before work
+            sleep_end = next_work_task_start - timedelta(hours=2)
+            # Find ideal starting point for sleep
+            sleep_start = sleep_end - timedelta(hours=8)
 
-            if next_work_task_start < sleep_end:
-                # Adjust sleep end to not conflict. Note sleep debt to be added to next day as nap.
-                sleep_end = next_work_task_start - timedelta(hours=2)
-                sleep_debt = sleep_end - sleep_start
+            # If work conflicts with ideal sleep, sleep later and add to sleep debt
+            if work_task_end > sleep_start:
+                sleep_start = work_task_end + timedelta(hours=1)
+                sleep_debt = sleep_debt + timedelta(hours=8) - (sleep_end - sleep_start)
 
+        if sleep_debt.total_seconds() > 0:
+            # Calculate after work gap, allowing for wind down time
+            after_work_gap = (work_task_end - sleep_start) - timedelta(1)
+            # Nap starts 1hr after work
+            nap_start = work_task_end + timedelta(hours=1)
+
+            # If the sleep debt is bigger than the available gap
+            if sleep_debt >= after_work_gap:
+                nap_end = nap_start + after_work_gap
+                sleep_debt = sleep_debt - after_work_gap
+            else:
+                nap_end = nap_start + sleep_debt
+                # Reset sleep debt to 0
+                sleep_debt = timedelta()
+            nap = (nap_start, nap_end)
         output.append([day, (sleep_start, sleep_end), nap])
     return output
 
