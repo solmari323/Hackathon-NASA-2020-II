@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 /*
  * TailwindCSS Configuration File
  *
@@ -5,7 +6,14 @@
  * Default: https://github.com/tailwindcss/tailwindcss/blob/master/stubs/defaultConfig.stub.js
  */
 module.exports = {
-  theme: {},
+  theme: {
+    textColor: {
+      primary: '#F6723C',
+      primary_light: '#FEAC8A',
+      secondary: '#ACACAC',
+      black: '#000000',
+    },
+  },
   variants: {},
   plugins: [],
 }
