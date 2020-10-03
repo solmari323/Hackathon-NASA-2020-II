@@ -14,7 +14,7 @@ Make sure that Python (with pip) is installed.
 Navigate to the backend directory, where `manage.py` is located.
 
 ```bash
-$ cd assessment-platform/backend/
+$ cd /backend/
 ```
 
 Create a virtual environment and enter it.
@@ -28,8 +28,7 @@ $ source .env/bin/activate          # Linux
 Install the requirements to your environment. 
 
 ```bash
-$ pip install -r requirements-base.txt
-$ pip install -r requirements-test.txt
+$ pip install -r requirements.txt
 ```
 
 Migrate your local database and run the server.
@@ -48,7 +47,7 @@ Make sure that Node (with npm and yarn) is installed.
 Navigate to the frontend directory, where `package.json` is located.
 
 ```bash
-$ cd assessment-platform/frontend/
+$ cd /frontend/
 ```
 
 Install the requirements to your environment. 
