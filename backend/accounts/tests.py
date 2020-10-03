@@ -49,7 +49,7 @@ class GetUsersTestCase(TestCase):
             response.data,
             [
                 {
-                    "url": "http://testserver/api/accounts/users/1/",
+                    "url": "http://testserver/api/users/1/",
                     "id": 1,
                     "username": "casperBD",
                     "first_name": "Casper",
@@ -57,7 +57,7 @@ class GetUsersTestCase(TestCase):
                     "email": "black@dogs.co.uk",
                 },
                 {
-                    "url": "http://testserver/api/accounts/users/2/",
+                    "url": "http://testserver/api/users/2/",
                     "id": 2,
                     "username": "muffinG",
                     "first_name": "Muffin",
@@ -65,7 +65,7 @@ class GetUsersTestCase(TestCase):
                     "email": "brown@dogs.co.uk",
                 },
                 {
-                    "url": "http://testserver/api/accounts/users/3/",
+                    "url": "http://testserver/api/users/3/",
                     "id": 3,
                     "username": "ramboL",
                     "first_name": "Rambo",
