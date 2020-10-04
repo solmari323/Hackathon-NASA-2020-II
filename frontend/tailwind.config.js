@@ -7,11 +7,14 @@
  */
 module.exports = {
   theme: {
-    textColor: {
-      primary: '#F6723C',
-      primary_light: '#FEAC8A',
-      secondary: '#ACACAC',
-      black: '#000000',
+    extend: {
+      colors: {
+        primary: {
+          default: '#F6723C',
+          light: '#FEAC8A',
+        },
+        secondary: '#ACACAC',
+      },
     },
   },
   variants: {},

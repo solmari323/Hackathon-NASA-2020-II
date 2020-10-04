@@ -1,10 +1,10 @@
 <template>
   <div class="tile flex flex-row items-center ml-4 my-4">
-    <div class="grad bg-gradient-to-br from-primary_light to-primary"></div>
+    <div class="grad bg-gradient-to-br from-primary-light to-primary"></div>
     <div class="mission-info my-4 ml-6">
       <p
         v-if="current"
-        class="text-sm font-bold text-primary_light mb-1 uppercase"
+        class="text-sm font-bold text-primary-light mb-1 uppercase"
       >
         Current Mission
       </p>
