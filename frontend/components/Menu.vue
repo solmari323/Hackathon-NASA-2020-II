@@ -55,15 +55,11 @@ export default {
   props: {
     upPrograms: {
       type: Array,
-      default() {
-        return []
-      },
+      default: () => [],
     },
     currPrograms: {
       type: Array,
-      default() {
-        return []
-      },
+      default: () => [],
     },
   },
 }
