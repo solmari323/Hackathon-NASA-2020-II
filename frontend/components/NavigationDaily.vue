@@ -2,7 +2,7 @@
   <div>
     <div class="flex justify-between p-8 pb-2">
       <p class="text-4xl font-bold text-black">
-        {{ dates[currDate].dow }} ,
+        {{ dates[currDate].dow }},
         <span class="text-gray-500 font-light">{{ dates[currDate].do }}</span>
       </p>
       <img class="" src="./../assets/img/menu.svg" alt="" />
