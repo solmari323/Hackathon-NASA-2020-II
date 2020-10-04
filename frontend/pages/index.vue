@@ -1,27 +1,7 @@
 <template>
   <div>
     <div>
-      <TileMetric
-        title="Subscribers"
-        value="2543"
-        difference="375"
-        icon="fas fa-users"
-        colour="bg-blue-500"
-      />
-      <TileMetric
-        title="Likes"
-        value="0"
-        difference="0"
-        icon="fas fa-thumbs-up"
-        colour="bg-purple-500"
-      />
-      <TileMetric
-        title="Views"
-        value="43014"
-        difference="-17626"
-        icon="fas fa-play"
-        colour="bg-teal-500"
-      />
+      <Menu />
     </div>
   </div>
 </template>
